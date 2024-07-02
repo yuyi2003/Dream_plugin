@@ -1,0 +1,25 @@
+{
+  "name": "AstralOS",
+  "displayName": "AstralOS",
+  "description": "AstralOS",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "php",
+      "aliases": ["AstralOS", "php"],
+      "extensions": [".toml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "php",
+      "scopeName": "source.toml",
+      "path": "./syntaxes/php.tmLanguage.json"
+    }]
+  }
+}

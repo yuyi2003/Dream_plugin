@@ -1,0 +1,61 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "example",
+	"patterns": [
+		{
+			"include": "#ad"
+		},
+		{
+			"include": "#keyprogcom"
+		},
+		{
+			"include": "#middle"
+		}
+	],
+	"repository": {
+		"ad": {
+			"patterns": [{
+				"name": "variable.other.constant",
+				"match": "name|keywordFull|keywordRegexp|keywordContained|program|content"
+			}]
+		},
+		"keyprogcom": {
+			"patterns": [{
+				"name": "constant.character.escape",
+				"match": "auto|define"
+			}]
+		},
+		"middle": {
+			"name": "aaa",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "keyword.control.conditional",
+					"begin": "【",
+					"end": "】",
+					"patterns": [
+						{
+							"name": "keyword.other",
+							"begin": "【",
+							"end": "】",
+							"patterns": [
+								{
+									"name": "constant.numeric",
+									"begin": "【",
+									"end": "】",
+									"patterns": [
+										{
+										"include":"#middle"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"scopeName": "source.toml"
+}

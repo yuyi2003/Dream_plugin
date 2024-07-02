@@ -1,0 +1,71 @@
+site_name: Astral Wiki
+nav:
+    - 主页: "index.md"
+    - 搭建指南-星骰: 
+      - "前言": "1.md"
+      - "基础搭建（手机）": "1-1.md"
+    - 基础功能-星骰: 
+      - "基础功能": "function.md"
+      - "基础指令": "directives.md"
+      - "文件载入": "load.md"
+      - "自定义帮助": "about.md"
+    - 进阶功能-星骰:
+      - "牌堆": "draw.md"
+      - "基础自定义（回雪）": "class.md"
+      - "进阶自定义（JS和LUA）": "js-lua.md"
+      - "房规": "rules.md"
+      - "Mirai码": "mirai.md"
+    - 非文本相关:
+      - "特殊函数": "special-functions.md"
+      - "mirai码": "mirai.md"
+      - "CQ码": "cq.md"
+    - 其他教程:
+      - "MT管理器教学": "MT.md"
+      - "提问的艺术": "askingarts.md"
+    - API:
+      - "Astral论坛相关API": "api.md"
+      - "星骰api": "astralapi.md"
+    - 论坛: "https://astral.snoweven.com/"
+    
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - content.code.copy
+    - navigation.top
+    - navigation.footer
+  markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  theme:
+  logo: assets/logo.png
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+markdown_extensions:
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - attr_list
+    - mdx_truly_sane_lists
+extra_css:
+  - css/custom.css
+  - css/extra.css

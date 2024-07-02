@@ -1,0 +1,32 @@
+/* 更改主页背景颜色 */
+:root {
+    --md-primary-bg-color: #aaaa; /* 替换#你的颜色代码为你想要的颜色代码 */
+  }
+
+  
+.astral-dice {
+    font-size: 100px; /* Astral Dice的字体大小 */
+    color: #ffffff; /* Astral Dice的颜色 */
+    line-height: 1.2; /* 缩短行间距 */
+}
+
+.stable-dice {
+    font-size: 40px; /* 最稳定的骰娘的字体大小 */
+    color: #ffffff; /* 最稳定的骰娘的颜色 */
+    line-height: 0.5; /* 缩短行间距 */
+}
+
+/* styles.css */
+.custom-background {
+    background-color: #4051b5; /* 设置背景颜色为蓝色 */
+}
+/* 假设页面有一个类名为 'specific-page' */
+.specific-page {
+    background-color: #4051b5; /* 设置背景颜色为蓝色 */
+}
+
+.md-button {
+    background-color: white; /* 设置按钮底色为白色 */
+    color: #4051b5; /* 设置按钮文字颜色为#4051b5 */
+    border: none; /* 去掉边框颜色 */
+}

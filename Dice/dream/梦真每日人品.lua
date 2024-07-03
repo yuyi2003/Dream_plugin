@@ -119,11 +119,10 @@ function getmsg(num,deck)
 end
 
 function yesdream_jrrp(msg)
-	local Num
+	local Num=sdk.randomInt(1,100)
 	if (dream.api.getUserConf("今日",msg.fromQQ,"jrrp") or 0)==dream.api.today() then
-		Num=dream.api.getUserConf("今日人品",msg.fromQQ,"jrrp")
+		Num=dream.api.getUserConf("今日人品",msg.fromQQ)
 	else
-		Num=sdk.randomInt(1,100)
 		dream.api.setUserConf("今日",dream.api.today(),msg.fromQQ,"jrrp")
 	end
     local msg1=getmsg(Num,Jrrp.Arcanum)

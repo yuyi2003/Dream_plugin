@@ -15,7 +15,7 @@ function Baidu(msg)
   tab.image = string.match(t,"<meta name=\"image\" content=\"(.+)\"><meta property=\"og:title\"")
   return "#{PICTURE-"..tab.image.."}"..tab.data
 end
-dream.keyword.set("Baidu","花火百度一下",Baidu)
+dream.keyword.set("Baidu","琪亚娜百度一下",Baidu)
 
 return {
   id = "Baidu",

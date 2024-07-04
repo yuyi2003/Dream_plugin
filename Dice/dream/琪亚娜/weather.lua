@@ -31,8 +31,8 @@ function weather.main(msg)
   tab = json.decode(dream.http.get(url))
   return "API许可证："..tab.refer.license[1].."\n最近更新时间："..tab.updateTime.."\n地点："..str.."\n温度："..tab.now.temp.."摄氏度\n状况："..tab.now.text.."\n风向："..tab.now.windDir.."\n风力等级："..tab.now.windScale.."\n风速："..tab.now.windSpeed.."公里/小时\n更多点击这里："..tab.fxLink
 end
-dream.keyword.set("weather","查询天气",weather.main)
-dream.keyword.set("weather","天气查询",weather.main)
+dream.keyword.set("weather","琪亚娜查询天气",weather.main)
+dream.keyword.set("weather","琪亚娜天气查询",weather.main)
 
 return {
     id = "weather",

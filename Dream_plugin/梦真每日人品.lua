@@ -145,7 +145,7 @@ dream.replace.set("jrrp","jrrp",yesdream_jrrp)
 
 return {
     id = "jrrp",
-    version = "1.0.1",
+    version = "1.0.2",
     help = "",
     author = "雨岚之忆",
     

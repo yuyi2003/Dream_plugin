@@ -11,7 +11,8 @@ Nekopara={
         pushin="你在猫堆上左右晃动，猫堆倒了。\n高度:{tall}";
         pushout="你撞到了猫堆上，猫堆倒了。\n高度:{tall}";
         pushfalse="经过你的努力，猫堆纹丝未动";
-        setneko="成功设置猫堆高度限制,当前限制：{num}"
+        setneko="成功设置猫堆高度限制,当前限制：{num}",
+        restart="重置猫堆成功。\n高度:{tall}"
     };
     neko={who=0;height=0;weight=0;cup=0;age=0;type=0;ear=0;tail=0;eye=0;cloth=0;place=0;down=0;bearing=0;bear=0;};
     zhaoneko={who="赵赵喵2.0";height="165";weight=46.5825;cup="A";age=16;type="少女";ear="天蓝色头饰";tail="天蓝色插件";eye="蓝色";cloth="jk水手服";place=0;down=0;bearing=0;bear=0;};
@@ -96,7 +97,6 @@ end
 function checkneko(file)
     local weight=0
     local p=dream.api.getUserConf("猫堆顶","neko",file)
-    local num=(dream.api.getUserConf("猫堆高度限制","neko",file) or 20)+sdk.randomInt(1,5)
     while p~=0 do
         p=tostring(p)
         local neko=dream.api.getUserConf("猫堆",p,file)
@@ -108,14 +108,14 @@ function checkneko(file)
         dream.api.setUserConf("猫堆",neko,p,file)
         p=neko.down
     end
-    if (dream.api.getUserConf("猫堆高度","neko",file) or 0)>=num then
+    if (dream.api.getUserConf("猫堆高度","neko",file) or 0)>=(dream.api.getUserConf("猫堆高度限制","neko",file) or 200) then
         return 0
     end
     return 1
 end
 
 function downneko(file)
-    local tall1=dream.api.getUserConf("猫堆高度","neko",file)
+    local tall1=dream.api.getUserConf("猫堆高度","neko",file) or 0
     dream.api.setUserConf("猫堆高度",0,"neko",file)
     dream.api.setUserConf("猫堆顶",0,"neko",file)
     dream.api.setUserConf("猫堆时间",os.time(),"neko",file)
@@ -189,8 +189,9 @@ function pushneko(msg)
     if tall==0 then
         return Nekopara.msg.pushnil
     else
+        local target=(tall^(3/2))/math.log(num)
         local num=sdk.randomInt(1,100)
-        if num<tall*2 then
+        if num<target then
             local tall=downneko(file)
             if self==1 then
                 return Nekopara.msg.pushin:gsub("{tall}",tall)
@@ -206,7 +207,7 @@ dream.keyword.set("nekoparas","叠猫猫推倒猫堆",pushneko)
 
 
 function settopmin(msg)
-    if dream.deter.master(msg) then
+    if not dream.api.permission(msg.fromGroup,msg.fromQQ) then
     local file="nekopara"..msg.fromGroup
     local num=dream.tonumber(msg.fromMsg:match("%d+"))
     if num==nil then
@@ -218,9 +219,20 @@ function settopmin(msg)
 end
 dream.command.set("nekoparas","nekoset",settopmin)
 
+function restartneko(msg)
+    if not dream.api.permission(msg.fromGroup,msg.fromQQ) then
+        local file="nekopara"..msg.fromGroup
+        local tall=downneko(file)
+        return Nekopara.msg.restart:gsub("{tall}",tall)
+    else
+        return ""
+    end
+end
+dream.command.set("nekoparas","nekoreset",restartneko)
+
 return {
     id = "nekoparas",
-    version = "1.1.3",
+    version = "1.1.4",
     help = "--叠猫猫--",
     author = "雨岚之忆",
     

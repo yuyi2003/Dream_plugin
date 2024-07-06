@@ -189,7 +189,7 @@ function pushneko(msg)
     if tall==0 then
         return Nekopara.msg.pushnil
     else
-        local target=(tall^(3/2))/math.log(num)
+        local target=(tall^(2))/math.log(tall)
         local num=sdk.randomInt(1,100)
         if num<target then
             local tall=downneko(file)

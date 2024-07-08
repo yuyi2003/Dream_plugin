@@ -12,7 +12,8 @@ Nekopara={
         pushout="你撞到了猫堆上，猫堆倒了。\n高度:{tall}";
         pushfalse="经过你的努力，猫堆纹丝未动";
         setneko="成功设置猫堆高度限制,当前限制：{num}",
-        restart="重置猫堆成功。\n高度:{tall}"
+        restart="重置猫堆成功。\n高度:{tall}",
+        pushself="你离开了猫堆，这里没有猫堆可以推了"
     };
     neko={who=0;height=0;weight=0;cup=0;age=0;type=0;ear=0;tail=0;eye=0;cloth=0;place=0;down=0;bearing=0;bear=0;};
     zhaoneko={who="赵赵喵2.0";height="165";weight=46.5825;cup="A";age=16;type="少女";ear="天蓝色头饰";tail="天蓝色插件";eye="蓝色";cloth="jk水手服";place=0;down=0;bearing=0;bear=0;};
@@ -25,6 +26,11 @@ Nekopara={
     eye={"彤","胭脂","绯红","橙","杏红","橙","鹅黄","缃","茶","栗","棕","琥珀","柳绿","豆绿","竹青","碧","玉","翡翠","艾青","靛","蔚蓝","藏青","黛蓝","绛紫","黛紫","群青","绀蓝","丁香","苍","水","象牙白","缟","荼白","霜","灰","玄","乌黑","墨"};
     cloth={"紧身毛衣","礼服","水手服","连衣裙","侦探服","女仆装","探险服","女式西装","黑色大衣","女式皮夹克","吊带裙","休闲服","巫女服","制式盔甲","比基尼盔甲","赤裸","露背毛衣","护士装","修女服","魔法师袍","学校泳装","泳装","Lolita","汉服","民族式服装","内衣","初心冒险者装备"};
 }
+
+function nekofile(group)
+    local file="nekopara/"..group
+    return file
+end
 
 function getgroupnum(group)
     local num=dream.api.getUserConf("群人数",group,"Yesdreamgroup")
@@ -62,6 +68,7 @@ end
 
 function RandomStature(group,nick)
     local num=getgroupnum(group)
+    print(num)
     local neko=Nekopara.neko
     local i=sdk.randomInt(1,3)
     local bmi=sdk.randomInt(170,230)/10
@@ -123,7 +130,7 @@ function downneko(file)
 end
 
 function addneko (msg)
-    local file="nekopara"..msg.fromGroup
+    local file=nekofile(msg.fromGroup)
     local tall= dream.api.getUserConf("猫堆高度","neko",file) or 0
     if dream.api.getUserConf("猫堆时间","neko",file)==nil then
         dream.api.setUserConf("猫堆时间",os.time(),"neko",file)
@@ -150,7 +157,7 @@ end
 dream.keyword.set("nekoparas","叠猫猫加入",addneko)
 
 function check1neko(msg)
-    local file="nekopara"..msg.fromGroup
+    local file=nekofile(msg.fromGroup)
     local tall= dream.api.getUserConf("猫堆高度","neko",file) or 0
     local p=dream.api.getUserConf("猫堆顶","neko",file)
     local message=Nekopara.msg.check1:gsub("{tall}",tall)
@@ -166,9 +173,8 @@ end
 dream.keyword.set("nekoparas","叠猫猫查看猫堆",check1neko)
 
 function checkself(msg)
-    local file="nekopara"..msg.fromGroup
+    local file=nekofile(msg.fromGroup)
     if (dream.api.getUserConf("猫堆时间",msg.fromQQ,file) or 0)==dream.api.getUserConf("猫堆时间","neko",file) then
-        local file="nekopara"..msg.fromGroup
         local neko=dream.api.getUserConf("猫堆",msg.fromQQ,file)
         return Nekopara.msg.check3:gsub("{name}",neko.who):gsub("{tall}",neko.place+1):gsub("{height}",neko.height):gsub("{weight}",neko.weight):gsub("{type}",neko.type):gsub("{cup}",neko.cup):gsub("{ear}",neko.ear):gsub("{tail}",neko.tail):gsub("{cloth}",neko.cloth)
     else
@@ -178,7 +184,7 @@ end
 dream.keyword.set("nekoparas","叠猫猫查看自己",checkself)
 
 function pushneko(msg)
-    local file="nekopara"..msg.fromGroup
+    local file=nekofile(msg.fromGroup)
     local tall= dream.api.getUserConf("猫堆高度","neko",file) or 0
     local self
     if (dream.api.getUserConf("猫堆时间",msg.fromQQ,file) or 0)==dream.api.getUserConf("猫堆时间","neko",file) then
@@ -188,6 +194,11 @@ function pushneko(msg)
     end
     if tall==0 then
         return Nekopara.msg.pushnil
+    elseif tall==1 and self==1 then
+        local tall=downneko(file)
+        return Nekopara.msg.pushself
+    elseif tall==1 and self==0 then
+        return Nekopara.msg.pushfalse
     else
         local target=(tall^(2))/math.log(tall)
         local num=sdk.randomInt(1,100)
@@ -208,7 +219,7 @@ dream.keyword.set("nekoparas","叠猫猫推倒猫堆",pushneko)
 
 function settopmin(msg)
     if not dream.api.permission(msg.fromGroup,msg.fromQQ) then
-    local file="nekopara"..msg.fromGroup
+    local file=nekofile(msg.fromGroup)
     local num=dream.tonumber(msg.fromMsg:match("%d+"))
     if num==nil then
         return "数据错误，请重新输入"
@@ -221,7 +232,7 @@ dream.command.set("nekoparas","nekoset",settopmin)
 
 function restartneko(msg)
     if not dream.api.permission(msg.fromGroup,msg.fromQQ) then
-        local file="nekopara"..msg.fromGroup
+        local file=nekofile(msg.fromGroup)
         local tall=downneko(file)
         return Nekopara.msg.restart:gsub("{tall}",tall)
     else
@@ -232,8 +243,8 @@ dream.command.set("nekoparas","nekoreset",restartneko)
 
 return {
     id = "nekoparas",
-    version = "1.1.4",
-    help = "--叠猫猫--",
+    version = "1.2.6",
+    help = "--叠猫猫(nekoparas)--\n叠猫猫加入\n叠猫猫推倒猫堆\n叠猫猫查看猫堆\n叠猫猫查看自己\n.nekoset [数字]--设置叠猫猫上限高度(限管理以上)\n.nekoreset--强制重置猫堆高度(限管理以上)\n(指令中并不包含中括号，替换掉的时候请连同中括号一起替换)",
     author = "雨岚之忆",
     
     mode = true

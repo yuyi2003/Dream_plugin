@@ -36,12 +36,17 @@ function findLaopo(msg)
   local tab=yesdreamtab(msg.fromGroup,msg.fromQQ)
   local num = ZhaoDiceSDK.randomInt(1,#tab)
   local laopo=dream.api.getUserConf("GroupLaoPo"..msg.fromGroup,msg.fromQQ,"GroupLaoPo")
-  if (laopo or 0)==0 then
-    laopo=tab[num]
-   dream.api.setUserConf("GroupLaoPo"..msg.fromGroup,laopo,msg.fromQQ,"GroupLaoPo")
-    return GroupLaoPo.qlaopotrue:gsub("{nickin}",msg.fromNick):gsub("{nick}",laopo.nick):gsub("{uin}",laopo.uin)
-  else
+  if (dream.api.getUserConf("GroupLaoPo时间"..msg.fromGroup,msg.fromQQ,"GroupLaoPo") or 0)==dream.api.today() then
     return GroupLaoPo.qlaopofalse:gsub("{nickin}",msg.fromNick):gsub("{nick}",laopo.nick):gsub("{uin}",laopo.uin)
+  else
+    if (laopo or 0)==0 then
+      laopo=tab[num]
+     dream.api.setUserConf("GroupLaoPo"..msg.fromGroup,laopo,msg.fromQQ,"GroupLaoPo")
+     dream.api.setUserConf("GroupLaoPo时间"..msg.fromGroup,dream.api.today(),msg.fromQQ,"GroupLaoPo")
+      return GroupLaoPo.qlaopotrue:gsub("{nickin}",msg.fromNick):gsub("{nick}",laopo.nick):gsub("{uin}",laopo.uin)
+    else
+      return GroupLaoPo.qlaopofalse:gsub("{nickin}",msg.fromNick):gsub("{nick}",laopo.nick):gsub("{uin}",laopo.uin)
+    end
   end
 end
 dream.keyword.set("GroupLaoPo","抽群老婆",findLaopo)
@@ -69,9 +74,8 @@ dream.keyword.set("GroupLaoPo","我的老婆",checkLaopo)
 
 return {
   id = "GroupLaoPo",
-  version = "2.1.1",
+  version = "2.1.2",
   help = "--群老婆插件--\n\n触发词:\n抽群老婆\n和老婆离婚\n我的老婆",
   author = "筑梦师V2.0&雨岚之忆",
-  
   mode = true
 }

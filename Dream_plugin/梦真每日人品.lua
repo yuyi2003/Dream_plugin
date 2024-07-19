@@ -1,5 +1,10 @@
-Jrrp={
-    divinatory_sign={ 
+YesdreamJrrp={
+	jrrp_msg={
+		"divinatory_sign";
+		"Arcanum",
+	};
+    jrrp={
+		divinatory_sign={ 
 		"【乾】\n乾为天 刚健中正\n卦象：上乾下乾 纯阳卦\n阳刚，刚健，自强不息。#{PICTURE-每日一卦/乾.jpg}\n事业：大吉大利，万事如意，心想事成，自有天佑，春风得意，事业如日中天。但阳气已达顶点，盛极必衰，务须提高警惕，小心谨慎。力戒骄傲，冷静处世，心境平和，如是则能充分发挥才智，保证事业成功。\n婚恋：阳盛阴衰，但刚柔可相济，形成美满结果。女性温柔者更佳。\n考试：有望取得好成绩。\n运势：有地位擢升、名利双收之象，功名荣显得贵子。六亲和睦，凡事谦和为贵，可吉。";
 		"【坤】\n坤为地 柔顺伸展\n卦象：上坤下坤 纯阴卦 \n明柔，地道贤生；厚载万物，运行不息而前进无疆，有顺畅之像。#{PICTURE-每日一卦/坤.jpg}\n事业：诸项事业可以成功，得到预想的结果，但开始出师不利，为困境所扰。切莫冒险急进，须小心谨言慎行，尤其不可单枪匹马，独断专行。取得朋友的关心和支持最为重要，在他人的合作下，共同完成事业。因此，应注重内心修养，积蓄养德，效法大地，容忍负重，宽厚大度，以直率、方正、含蓄为原则，不得贪功自傲，持之以恒，谋求事业的成功。\n婚恋：阴盛。以柔克刚，女方柔顺，美好姻缘，白头到老。\n考试：希望不大。\n运势：诸事不宜急进，退守以静制动者吉。坤者大地平静，任其他物所摧而不为所动者大利也。若醉心私欲，违背常理，则有无妄之灾。";
 		"【屯】\n水雷屯 起始维艰\n卦象：上坎下震 屯卦\n木得天雨而沐之，或雷而交加，面对困难而思慎之像。#{PICTURE-每日一卦/屯.jpg}\n事业：起初多不利，必知难而进，小心翼翼，勇往直前，灵活机动，可望获得大的成功，时机到来时一定要抓住，却也不得操之太急，且仍有困难，务必有他人相助，故平时应多施恩惠。\n婚恋：好事多磨，忠贞纯洁，大胆追求，能够成功，婚姻美满。\n考试：不理想。\n运势：逆势，多有困惑，但不可妄进，宜守不宜进。坚定意志，凡事不可为一己之利而执意强行，皆有不成损破之象。宜步步为营，排除困难，始可通达，有初难后解之象。";
@@ -64,8 +69,8 @@ Jrrp={
 		"【小过】\n雷山小过 行动有度\n卦象：上震下艮 小过卦\n为大坎卦像，高山霹雷，山大雷小，小有所过；有所超过，隐伏危险，但以静制动，“小过常以成大业。”#{PICTURE-每日一卦/小过.jpg}\n事业：行动宜谨慎小心，切勿冒险，尤其不得钻营。但只要坚持正当的行为，可勇敢向前，努力奋斗，开拓事业。不过，一定要把握尺度，不要好高骛远，以免招致灾祸。随机应变是关键。\n婚恋：应较长时间的彼此了解，不可仓促行事。\n考试：不理想\n运势：行事不如意，宜谨守，与六亲不和之象。又忠言逆耳犯上得罪人之事，反为害己之因，故凡诸事均有枝节、苦烦，不能达志耳。";
 		"【既济】\n水火既济 盛极将衰\n卦象：上坎下离 既济卦\n坎水在上，离火在下，水火相交，二气相感，大功告成。矛盾著的两个事物相辅相济，促成事业完成。#{PICTURE-每日一卦/既济.jpg}\n事业：处在顺利和兴旺的阶段，甚至大功已经告成。如何才能保住这种势头，是问题的关键。必须认识盛极将衰的真理，必思患预防，防微杜渐，有备可无患。同时，一定要密切注意形势，抓住有利时机，继续奋发向上，推动事业发展。\n婚恋：起初顺利，只中途会出现挫折。\n考试：实力有，但需视考期之日吉凶而定，小吉。\n运势：功名双收。极盛之时，但须知物极必反，宜退守为吉，再进则凶。但得此卦者，皆有因一时顺利而忘本，大意失荆州，终有人不和、心迷乱之象。";
 		"【未济 】\n火水未济 事业未竟\n卦象：上离下坎 未济卦\n火在水上，二气不相交，事尚未成功，事不利，没有终结，永无终止。#{PICTURE-每日一卦/未济.jpg}\n事业：处于最后的关键时刻，成功与否就在眼前。因此务必不可掉以轻心。自我节制十分重要，坚持到底，必要时也可能慎重地进行适度冒险，以成就事业。\n婚恋：已经渡过了困难阶段，再慎重地加把劲，会有美满的结果。\n考试：不错，有好成绩。\n运势：气运不通，诸事不能如愿，有初衰后盛之象。凡事要有耐心去突破难关，前途将大有可望。与人共谋事者，终有大利，可为之。"
-    };
-	Arcanum={
+    	};
+		Arcanum={
 		"【0】愚者（The Fool，0)正位:\n憧憬自然的地方、毫无目的地前行、喜欢尝试挑战新鲜事物、四处流浪。美好的梦想。#{PICTURE-大阿尔卡纳塔罗牌/愚者正位.jpg}";
 		"【0】愚者（The Fool，0)逆位:\n冒险的行动，追求可能性，重视梦想，无视物质的损失，离开家园，过于信赖别人，为出外旅行而烦恼。心情空虚、轻率的恋情、无法长久持续的融洽感、不安的爱情的旅程、对婚姻感到束缚、彼此忽冷忽热、不顾众人反对坠入爱河、为恋人的负心所伤、感情不专一。#{PICTURE-大阿尔卡纳塔罗牌/愚者逆位.jpg}";
 		"【1】魔术师（The Magician，I)正位:\n事情的开始，行动的改变，熟练的技术及技巧，贯彻我的意志，运用自然的力量来达到野心。#{PICTURE-大阿尔卡纳塔罗牌/魔术师正位.jpg}";
@@ -110,42 +115,34 @@ Jrrp={
 		"【20】审判（Judgement，XX)逆位:\n一蹶不振、幻灭、隐瞒、坏消息、无法决定、缺少目标、没有进展、消除、恋恋不舍。#{PICTURE-大阿尔卡纳塔罗牌/审判逆位.jpg}";
 		"【21】世界（The World，XXI)正位:\n完成、成功、完美无缺、连续不断、精神亢奋、拥有毕生奋斗的目标、完成使命、幸运降临、快乐的结束、模范情侣。#{PICTURE-大阿尔卡纳塔罗牌/世界正位.jpg}";
 		"【21】世界（The World，XXI)逆位:\n未完成、失败、准备不足、盲目接受、一时不顺利、半途而废、精神颓废、饱和状态、合谋、态度不够融洽、感情受挫。#{PICTURE-大阿尔卡纳塔罗牌/世界逆位.jpg}"
-
-	}
+		};
+	};
+	func={};
 }
-function getmsg(num,deck)
+function YesdreamJrrp.func.getmsg(num,deck)
 	local i=(num%(#deck))+1
-	return deck[i]
+	local msg="#{SPLIT}"..deck[i]
+	return msg
 end
 
-function yesdream_jrrp(msg)
-	local Num
-	if (dream.api.getUserConf("今日",msg.fromQQ,"jrrp") or 0)==dream.api.today() then
-		Num=dream.api.getUserConf("今日人品",msg.fromQQ,"jrrp")
-	else
-		Num=sdk.randomInt(1,100)
-		dream.api.setUserConf("今日",dream.api.today(),msg.fromQQ,"jrrp")
+function YesdreamJrrp.func.yesdream_jrrp(msg)
+    local message=""
+	for i=1,#YesdreamJrrp.jrrp_msg do
+		message=message..YesdreamJrrp.func.getmsg(msg.fromJrrp,YesdreamJrrp.jrrp[YesdreamJrrp.jrrp_msg[i]])
 	end
-    local msg1=getmsg(Num,Jrrp.Arcanum)
-	local msg2=getmsg(Num,Jrrp.divinatory_sign)
-	if dream.api.thisGroupisOn(msg.fromGroup) and msg.isGroup then
-		dream.api.sendMessage(msg2,msg)
-    	dream.api.sendMessage(msg1,msg)
-	elseif not msg.isGroup then
-		dream.api.sendMessage(msg2,msg)
-    	dream.api.sendMessage(msg1,msg)
+	if (dream.api.thisGroupisOn(msg.fromGroup) and msg.isGroup)then
+		dream.api.sendMessage(message,msg)
 	end
-    dream.api.setUserConf("今日人品",Num,msg.fromQQ,"jrrp")
     return 0
 end
 
-dream.replace.set("jrrp","jrrp",yesdream_jrrp)
+dream.replace.set("jrrp","jrrp",YesdreamJrrp.func.yesdream_jrrp)
 
 
 
 return {
     id = "jrrp",
-    version = "1.0.2",
+    version = "2.0.1",
     help = "",
     author = "雨岚之忆",
     

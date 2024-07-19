@@ -44,13 +44,13 @@
 
 --[[    模板函数
 function [名字](msg)
-    local modle=Love.[名字]
+    local modle=Love.cus_state.[名字]
     local sen=love_add(msg,modle)
     return sen;
 end
 
-for v=1,#Love.[名字].sen.keyword do
-    dream.keyword.set("love",Love.[名字].sen.keyword[v],[名字])
+for v=1,#Love.cus_state.[名字].sen.keyword do
+    dream.keyword.set("love",Love.cus_state.[名字].sen.keyword[v],[名字])
     end
 ]]--
 Love={--好感度
@@ -62,39 +62,23 @@ Love={--好感度
                 message代表统一底部回复，一般用于展示好感度
         ]]
         haogan={
-            barrier={100,800,2000};
+            barrier={10,800};
             message_barrier={
-                {"和我做朋友？（轻笑）好啊";};
-                {"一起吗？布洛妮娅做了新的游戏";};
-                {"你说，芽衣她们现在在干嘛呢？";};
-                {"谢谢你，以后的故事，我们一起吧";};
+                {
+                    "才没有好感度什么的，你快走开啊！hentai！";
+                    "呜哇，这家伙为什么还没被拉黑啊啊啊啊，你不要过来啊啊啊QAQ##发现变态！！！！是变态！！"
+                };
+                {
+                    "好感度？为什么要这么问，非要说的话就是{haogan}大概这么多";
+                    "唔？好感度，事到如今说这个做什么哇，{haogan}这么多总行了吧";
+                    "不要在意这种奇怪的数值了啦！{haogan},这么多总行了吧，有点饿了，你还有包子吗"; 
+                };
+                {"唔唔，{haogan}哒，谢谢你一直陪着我————就，这样说的话能再给我点那个吗#期待";};
             };
-            message={"\n(琪亚娜的好感度？:{haogan})"};
+            message={""};
         };
         cus_state={
              --table复制到大概这个位置即可--
-            add2={
-                name="add2";--填名字，需要和引用对齐
-                num={
-                    tiger_time=nil;--触发时间/填入nil则为每日触发
-                    roll_target=101;--比这个数值小即可加好感/填nil即为匹配好感度
-                    --随机边界
-                    roll_max=100;
-                    roll_min=1;
-                    --增减数值
-                    num_max=30;
-                    num_min=5;
-                    freq=1;--次数/每天
-                    timelink=1;--间隔/每次
-                };
-                sen={
-                    keyword={"喂食吐司披萨";};--触发词
-                    success={"以前，芝士可是很难买到的\n某些数值悄悄上升了--{num}";};--成功回复
-                    fail={"";};--失败回复
-                    timeless={"谢谢，不过我已经吃饱了";};--时间不足回复
-                    freqout={"谢谢，不过我已经吃饱了";};--次数过多回复
-                };
-            };
             add3={
                 name="add3";--填名字，需要和引用对齐
                 num={
@@ -110,8 +94,8 @@ Love={--好感度
                     timelink=1;--间隔/每次
                 };
                 sen={
-                    keyword={"喂食甜椒咖喱";};--触发词
-                    success={"是啊，甜椒咖喱怎么会有辣味呢？\n某些数值悄悄上升了--{num}";};--成功回复
+                    keyword={"喂食小笼包";};--触发词
+                    success={"好欸！是小笼包。#一口吞下";};--成功回复
                     fail={"";};--失败回复
                     timeless={"谢谢，不过我已经吃饱了";};--时间不足回复
                     freqout={"谢谢，不过我已经吃饱了";};--次数过多回复
@@ -132,8 +116,11 @@ Love={--好感度
                     timelink=1;--间隔/每次
                 };
                 sen={
-                    keyword={"喂食炸鸡块";};--触发词
-                    success={"在圣芙蕾雅那段时间，我最喜欢吃芽衣做的炸鸡块了\n某些数值悄悄上升了--{num}";};--成功回复
+                    keyword={"请天依喝好喝的";};--触发词
+                    success={
+                        "好欸！谢谢你的款待，天依很满足。如果可以的话请再来一点";
+                        "好欸谢啦!!☆⌒(*＾-゜)v||是<info:name>送的饮品！呜呜呜，太感动了，谢谢<info:name>！mua"
+                    };--成功回复
                     fail={"";};--失败回复
                     timeless={"谢谢，不过我已经吃饱了";};--时间不足回复
                     freqout={"谢谢，不过我已经吃饱了";};--次数过多回复
@@ -155,11 +142,14 @@ Love={--好感度
                     timelink=4;--间隔/每次
                 };
                 sen={
-                    keyword={"喂食琪亚娜";};--触发词
-                    success={"谢谢，感觉你的手艺和芽衣平分秋色呢\n某些数值悄悄上升了--{num}";};--成功回复
+                    keyword={"喂食天依";"喂食洛天依";};--触发词
+                    success={
+                        "{nick}眼前一黑，手中的食物瞬间消失，再看的时候，一个小姑娘已经开始擦嘴了，眼前的一桌子食物荡然无存\n某些数值悄悄上升了--{num}";
+                        "感谢{nick}的投喂，那么我就不客气啦\n某些数值悄悄上升了--{num}"
+                    };--成功回复
                     fail={"有趣的小玩意,既然是你...那我就不客气的拿走了~\n某些数值悄悄上升了--{num}";};--失败回复
-                    timeless={"谢谢，不过我已经吃饱了";};--时间不足回复
-                    freqout={"谢谢，不过我已经吃饱了";};--次数过多回复
+                    timeless={"就算是天依，也是要保持身材的。再等会吧~";};--时间不足回复
+                    freqout={"也不能总是吃那么多，一天吃三顿大概也够吧#咽口水";};--次数过多回复
                 };
             };
                 --[[  
@@ -247,39 +237,30 @@ function love_add(msg,modle)
 end
 
 function add1(msg)
-    local modle=Love.add1
+    local modle=Love.cus_state.add1
     local sen=love_add(msg,modle)
     return sen
 end
-for v=1,#Love.add1.sen.keyword do
-dream.keyword.set("love",Love.add1.sen.keyword[v],add1)
-end
-
-function add2(msg)
-    local modle=Love.add2
-    local sen=love_add(msg,modle)
-    return sen
-end
-for v=1,#Love.add2.sen.keyword do
-dream.keyword.set("love",Love.add2.sen.keyword[v],add2)
+for v=1,#Love.cus_state.add1.sen.keyword do
+dream.keyword.set("love",Love.cus_state.add1.sen.keyword[v],add1)
 end
 
 function add3(msg)
-    local modle=Love.add3
+    local modle=Love.cus_state.add3
     local sen=love_add(msg,modle)
     return sen
 end
-for v=1,#Love.add3.sen.keyword do
-dream.keyword.set("love",Love.add3.sen.keyword[v],add3)
+for v=1,#Love.cus_state.add3.sen.keyword do
+dream.keyword.set("love",Love.cus_state.add3.sen.keyword[v],add3)
 end
 
 function add4(msg)
-    local modle=Love.add4
+    local modle=Love.cus_state.add4
     local sen=love_add(msg,modle)
     return sen
 end
-for v=1,#Love.add4.sen.keyword do
-dream.keyword.set("love",Love.add4.sen.keyword[v],add4)
+for v=1,#Love.cus_state.add4.sen.keyword do
+dream.keyword.set("love",Love.cus_state.add4.sen.keyword[v],add4)
 end
 
 

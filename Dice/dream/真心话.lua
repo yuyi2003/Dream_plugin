@@ -71,7 +71,7 @@ function Truth.func.checknum(file)--比较最大最小
     return min,max
 end
 
-function Truth.func.restartT(msg)--结算
+function Truth.func.restartT(msg)--重置
     local file=Truth.func.Tfile(msg.fromGroup)
     local message="重置成功\n"
     if dream.api.getUserConf("顶指针","Truth",file)~=0 then
@@ -84,25 +84,12 @@ function Truth.func.restartT(msg)--结算
     end
     return message
 end
-dream.keyword.set("Truth","真心话结算",Truth.func.restartT)
-
-function Dare.func.resetT(msg)--大冒险结算
-    local file=Truth.func.Tfile(msg.fromGroup)
-    local message="重置成功\n\n由于指令更新，结算指令改为'真心话结算'"
-    if not dream.api.permission(msg.fromGroup,msg.fromQQ) or dream.deter.master(msg.fromQQ) then
-        dream.api.setUserConf("时间",os.time(),"Truth",file)
-        dream.api.setUserConf("顶指针",0,"Truth",file)
-        return message
-    else
-        return ""
-    end
-end
-dream.keyword.set("Dare","真心话重置",Dare.func.resetT)
+dream.keyword.set("Truth","真心话重置",Truth.func.restartT)
 
 return {
     id = "Truth",
     version = "2.0.0",
-    help = "--真心话--\n真心话加入\n真心话查看\n真心话结算--查看结果",
+    help = "--真心话--\n真心话加入\n真心话查看\n真心话重置--查看结果",
     author = "雨岚之忆",
     mode = true
   }

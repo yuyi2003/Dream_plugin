@@ -1,4 +1,4 @@
-Duel={--决斗
+YesdreamDuel={--决斗
         mode_message={
             message="模式切换成功。\n当前模式:";
             difficult={{"根本不可能输掉嘛"};
@@ -6,7 +6,7 @@ Duel={--决斗
             {"公平交手"};
             {"幸运女神也救不了你"};
             {"我们在期待一个勇者"};}
-        };
+            };
         duel_false={"一天只能决斗一次哦，不过嘛你要是不服气的话--也还是只能决斗一次"};
         message="{before}\n-----\n{dicename}\nsum:{dicesum}\n{dicenum}\n{player}\nsum:{playersum}\n{playernum}\n-----\n记：{result1}/10={result}分\n{after}";
         before={"看来{player}想向我发起决斗，呼呼，那我就接下了"};
@@ -110,23 +110,24 @@ Duel={--决斗
             {"?居然。。我居然会输到这种地步。。你你你，你欺负我，我要退群！退群！"};
             {"完败？！这不可能？不可能？！你你。。你对我的骰子干了什么，不可能不可能不可能不可能*N....（逐渐失去高光）"};
         };
+        func={};
     };
 
 i=sdk.randomInt(1,100)
 
-function cdivision(div,dediv)
+function YesdreamDuel.func.cdivision(div,dediv)
     return (div-(div%dediv))/dediv
 end
 
-function roll(mode)
+function YesdreamDuel.func.roll(mode)
     return sdk.randomInt(1,100-mode*10)+mode*10
 end
 
-function num(num)
+function YesdreamDuel.func.num(num)
     local dice={}
     dice[6]=0
     for i=1,5 do
-        dice[i]=roll(num)
+        dice[i]=YesdreamDuel.func.roll(num)
         dice[6]=dice[6]+dice[i]
     end
     return dice
@@ -137,36 +138,35 @@ local function date()
     return time
 end
 
-function yesdream_roll_duel(msg)
+function YesdreamDuel.func.roll_duel(msg)
     if dream.api.getUserConf("duel_模式","duel","duel")==nil then
         dream.api.setUserConf("duel_模式",3,"duel","duel")
     end
     if (dream.api.getUserConf("duel时间",msg.fromQQ,"duel") or 0)~=date() then
         dream.api.setUserConf("duel时间",date(),msg.fromQQ,"duel")
         local mode=(dream.api.getUserConf("duel_模式","duel","duel") or 3)
-        local dice=num(mode)
+        local dice=YesdreamDuel.func.num(mode)
         local dice1=dice[1].."、"..dice[2].."、"..dice[3].."、"..dice[4].."、"..dice[5]
-        local player=num(6-mode)
+        local player=YesdreamDuel.func.num(6-mode)
         local player1=player[1].."、"..player[2].."、"..player[3].."、"..player[4].."、"..player[5]
         local result1=player[6]-dice[6]
-        local result=cdivision(result1,10)
-        local before_message=Duel.before[i%#Duel.before+1] or "占位输出"
-        local after_message=Duel.after[result+49][(i%#Duel.after[result+50])+1] or "占位输出"
-        local message=Duel.message:gsub("{before}",before_message):gsub("{after}",after_message):gsub("{dicename}",msg.fromDiceName):gsub("{player}",msg.fromNick):gsub("{dicesum}",dice[6]):gsub("{playersum}",player[6]):gsub("{dicenum}",dice1):gsub("{playernum}",player1):gsub("{result}",result):gsub("{result1}",result1)
+        local result=YesdreamDuel.func.cdivision(result1,10)
+        local before_message=YesdreamDuel.before[sdk.randomInt(1,#YesdreamDuel.before)] or "占位输出"
+        local after_message=YesdreamDuel.after[result+49][sdk.randomInt(1,#YesdreamDuel.after[result+50])] or "占位输出"
+        local message=YesdreamDuel.message:gsub("{before}",before_message):gsub("{after}",after_message):gsub("{dicename}",msg.fromDiceName):gsub("{player}",msg.fromNick):gsub("{dicesum}",dice[6]):gsub("{playersum}",player[6]):gsub("{dicenum}",dice1):gsub("{playernum}",player1):gsub("{result}",result):gsub("{result1}",result1)
         return message
     else
-        return Duel.duel_false[(i%#Duel.duel_false)+1]
+        return YesdreamDuel.duel_false[sdk.randomInt(1,#YesdreamDuel.duel_false)]
     end
 end
-dream.command.set("duel","duel",yesdream_roll_duel)
+dream.command.set("duel","duel",YesdreamDuel.func.roll_duel)
 
-function difficult_set(msg)
+function YesdreamDuel.func.difficult_set(msg)
     if dream.deter.master(msg) then
         local mode=dream.tonumber(msg.fromMsg:match("%d"))
         if mode>=1 and mode<=5 then
-            print(mode)
             dream.api.setUserConf("duel_模式",mode,"duel","duel")
-            local message=Duel.mode_message.message..(Duel.mode_message.difficult[mode][(i%#Duel.mode_message.difficult[mode])+1] or "占位输出")
+            local message=YesdreamDuel.mode_message.message..(YesdreamDuel.mode_message.difficult[mode][sdk.randomInt(1,#YesdreamDuel.mode_message.difficult[mode])] or "占位输出")
             return message
         else
             return "输入范围错误，范围应为1-5"
@@ -174,11 +174,18 @@ function difficult_set(msg)
     end
     return ""
 end
-dream.command.set("duel","changeduel",difficult_set)
+dream.command.set("duel","changeduel",YesdreamDuel.func.difficult_set)
+
+function YesdreamDuel.func.difficult_check(msg)
+    local mode= dream.api.setUserConf("duel_模式",mode,"duel","duel") or 3
+    local message=YesdreamDuel.mode_message.message..(YesdreamDuel.mode_message.difficult[mode][sdk.randomInt(1,#YesdreamDuel.mode_message.difficult[mode])] or "占位输出")
+    return message
+end
+dream.command.set("duel","checkduel",YesdreamDuel.func.difficult_check)
 
 return {
     id = "duel",
-    version = "1.0.0",
+    version = "1.1.1",
     help = "--梦真duel--",
     author = "雨岚之忆",
     
